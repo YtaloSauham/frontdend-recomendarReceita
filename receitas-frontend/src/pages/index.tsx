@@ -19,13 +19,12 @@ export default function Home() {
 
   const handleDificuldadeChange = (e) => {
     setDificuldade(e.target.value);
-    console.log(dificuldade)
   };
 
   const handleTipoChange = (e) => {
 
     setTipo(e.target.value);
-    console.log(tipo)
+
   };
 
   return (
@@ -34,8 +33,8 @@ export default function Home() {
         <h1 className="text-white text-4xl mx-auto">O que vou comer hoje?</h1>
       </div>
 
-      <div className='flex flex-1 container'>
-        <div className=" mx-auto my-8">
+      <div className='flex flex-col  '>
+        <div className=" mx-auto my-8 bg-gray-900 border rounded-lg py-6 px-4">
 
           <div className="flex flex-col mb-4 ">
             <span className="mb-2">Dificuldade:</span>
@@ -89,7 +88,7 @@ export default function Home() {
                 />
                 <label htmlFor="acompanhamento" className="ml-2">Acompanhamento</label>
               </div>
-              <div>
+              <div className='ml-2'>
                 <input
                   type="radio"
                   id="sobremesa"
@@ -102,22 +101,28 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <button onClick={handleRecomendar} className="bg-blue-500 text-white px-4 py-2 rounded">
+          <button onClick={handleRecomendar} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-300">
             Recomendar
           </button>
 
         </div>
 
-        <div className='text-white flex-2 w-[50rem]'>
-          <ul className="mt-4">
-            {receitas?.map((receita, index) => (
-              <li key={index} className="border-b py-4">
-                <h3 className="text-xl mb-2">{receita.title}</h3>
-                <p>Tempo de preparo: {receita.prep_time} minutos</p>
-                <p >Modo de preparo: {receita.instructions}</p>
-              </li>
-            ))}
-          </ul>
+        <div className=' flex flex-col  mx-auto my-8 justify-center text-white container w-[50rem] h-full bg-gray-900 border rounded-lg px-4'>
+
+          {!receitas ? (<span> Nenhuma receita foi encontrada</span>) : (
+            <ul className="mt-4">
+              {receitas?.map((receita, index) => (
+
+                <li key={index} className="border-b py-4">
+                  <h3 className="text-xl mb-2">{receita.title}</h3>
+                  <p>Tempo de preparo: {receita.prep_time} minutos</p>
+                  <p >Modo de preparo: {receita.instructions}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+
+
 
         </div>
       </div>
